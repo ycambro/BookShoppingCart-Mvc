@@ -30,7 +30,7 @@ var app = builder.Build();
 // Uncomment it when you run the project first time, It will registered an admin
 //using (var scope = app.Services.CreateScope())
 //{
-//    await DbSeeder.SeedDefaultData(scope.ServiceProvider);
+    //await DbSeeder.SeedDefaultData(scope.ServiceProvider);
 //}
 
 // Configure the HTTP request pipeline.

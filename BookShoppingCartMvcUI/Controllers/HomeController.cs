@@ -9,11 +9,21 @@ namespace BookShoppingCartMvcUI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHomeRepository _homeRepository;
+        private IHomeRepository @object;
 
         public HomeController(ILogger<HomeController> logger, IHomeRepository homeRepository)
         {
             _homeRepository = homeRepository;
             _logger = logger;
+        }
+
+        public HomeController()
+        {
+        }
+
+        public HomeController(IHomeRepository @object)
+        {
+            this.@object = @object;
         }
 
         public async Task<IActionResult> Index(string sterm="",int genreId=0)
