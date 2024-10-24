@@ -73,10 +73,24 @@ namespace BookShoppingCartMVC.tests.Controllers
 
             // Assert
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal(nameof(_controller.AddGenre), redirectResult.ActionName);  // Verificar que redirige correctamente
-            _mockRepo.Verify(repo => repo.AddGenre(It.IsAny<Genre>()), Times.Once);  // Verificar que se agregó el género
-            Assert.Equal("Genre added successfully", _controller.TempData["successMessage"]);
+            Assert.Equal(nameof(_controller.AddGenre), redirectResult.ActionName);  
+            _mockRepo.Verify(repo => repo.AddGenre(It.IsAny<Genre>()), Times.Once); 
         }
+
+        [Fact]
+        public async Task AddGenre_ValidModel_UpdatesSuccessMessageInTempData()
+        {
+            // Arrange
+            var genre = new GenreDTO { Id = 3, GenreName = "Horror" };
+            _mockRepo.Setup(repo => repo.AddGenre(It.IsAny<Genre>())).Returns(Task.CompletedTask);
+
+            // Act
+            await _controller.AddGenre(genre);
+
+            // Assert
+            Assert.Equal("Genre added successfully", _controller.TempData["successMessage"]); // Verifica que TempData se actualizó con el mensaje correcto
+        }
+
 
         [Fact]
         public async Task AddGenre_InvalidModelState_ReturnsViewWithModel()
@@ -107,9 +121,9 @@ namespace BookShoppingCartMVC.tests.Controllers
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.Equal(genreDto, viewResult.Model);  // Verificar que retorna el modelo recibido
-            Assert.Equal("Genre could not added!", _controller.TempData["errorMessage"]);  // Verificar que el mensaje de error se establece
-            _mockRepo.Verify(repo => repo.AddGenre(It.IsAny<Genre>()), Times.Once);  // Verificar que se intentó agregar el género
+            Assert.Equal(genreDto, viewResult.Model);  
+            Assert.Equal("Genre could not added!", _controller.TempData["errorMessage"]);  
+            _mockRepo.Verify(repo => repo.AddGenre(It.IsAny<Genre>()), Times.Once);  
 
         }
 
