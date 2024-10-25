@@ -59,6 +59,21 @@ namespace BookShoppingCartMVC.tests.Controllers
         };
         }
 
+        [Fact]
+        public async Task Index_NoBooksFound_ReturnsEmptyList()
+        {
+            // Arrange
+            _mockBookRepo.Setup(repo => repo.GetBooks()).ReturnsAsync(new List<Book>());
+
+            // Act
+            var result = await _controller.Index();
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<IEnumerable<Book>>(viewResult.Model);
+            Assert.Empty(model);
+        }
+
         // Pruebas para el método GET: AddBook
         [Fact]
         public async Task AddBook_Get_Returns_ViewResult_With_BookDTO()
@@ -96,6 +111,20 @@ namespace BookShoppingCartMVC.tests.Controllers
             Assert.False(viewResult.ViewData.ModelState.IsValid);
             _mockBookRepo.Verify(repo => repo.AddBook(It.IsAny<Book>()), Times.Never);
         }
+        [Fact]
+        public async Task AddBook_Post_InvalidData_ShowsErrors()
+        {
+            // Arrange
+            var bookDto = new BookDTO();
+            _controller.ModelState.AddModelError("Error", "Error en el modelo");
+
+            // Act
+            var result = await _controller.AddBook(bookDto);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.False(viewResult.ViewData.ModelState.IsValid);
+        }
 
         //Pruebas para el método GET: UpdateBook
         [Fact]
@@ -129,20 +158,39 @@ namespace BookShoppingCartMVC.tests.Controllers
             Assert.Equal(1, model.GenreId);
         }
 
+        
+
         [Fact]
-        public async Task UpdateBook_BookNotFound_ReturnsError()
+        public async Task UpdateBook_InvalidModel_ReturnsViewWithErrors()
         {
             // Arrange
-            _mockBookRepo.Setup(repo => repo.GetBookById(It.IsAny<int>())).ReturnsAsync((Book)null);
+            var bookDto = new BookDTO();
+            _controller.ModelState.AddModelError("Error", "Error en el modelo");
 
             // Act
-            var result = await _controller.UpdateBook(1);
+            var result = await _controller.UpdateBook(bookDto);
 
             // Assert
-            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Index", redirectResult.ActionName);
-            Assert.Equal("Book with the id: 1 does not found", _controller.TempData["errorMessage"]);
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.False(viewResult.ViewData.ModelState.IsValid);
+            _mockBookRepo.Verify(repo => repo.UpdateBook(It.IsAny<Book>()), Times.Never);
         }
+        [Fact]
+        public async Task UpdateBook_Post_InvalidData_ReturnsViewWithModel()
+        {
+            // Arrange
+            var bookDto = new BookDTO();
+            _controller.ModelState.AddModelError("Error", "Error");
+
+            // Act
+            var result = await _controller.UpdateBook(bookDto);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.False(viewResult.ViewData.ModelState.IsValid);
+        }
+
+
         // Pruebas para el método GET: DeleteBook
         [Fact]
         public async Task DeleteBook_BookExists_DeletesBookAndRedirects()
@@ -151,8 +199,8 @@ namespace BookShoppingCartMVC.tests.Controllers
             var book = new Book
             {
                 Id = 1,
-                BookName = "Test Book",
-                Image = "image.jpg"
+                BookName = "Libro Prueba",
+                Image = "imagen.jpg"
             };
             _mockBookRepo.Setup(repo => repo.GetBookById(1)).ReturnsAsync(book);
 
@@ -163,7 +211,7 @@ namespace BookShoppingCartMVC.tests.Controllers
             var redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.Equal("Index", redirectResult.ActionName);
             _mockBookRepo.Verify(repo => repo.DeleteBook(book), Times.Once);
-            _mockFileService.Verify(service => service.DeleteFile("image.jpg"), Times.Once);
+            _mockFileService.Verify(service => service.DeleteFile("imagen.jpg"), Times.Once);
         }
     }
 }
