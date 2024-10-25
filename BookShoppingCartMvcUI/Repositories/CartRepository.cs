@@ -205,14 +205,11 @@ namespace BookShoppingCartMvcUI.Repositories
                 return false;
             }
         }
-
         private string GetUserId()
         {
             var principal = _httpContextAccessor.HttpContext.User;
             string userId = _userManager.GetUserId(principal);
             return userId;
         }
-
-
     }
 }
