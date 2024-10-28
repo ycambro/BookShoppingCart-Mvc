@@ -20,7 +20,7 @@ namespace BookShoppingCartMVC.tests.Controllers
         private Mock<IFileService> _mockFileService;
         private BookController _controller;
 
-        public BookControllerTests()
+        public BookControllerTests()     
         {
             _mockBookRepo = new Mock<IBookRepository>();
             _mockGenreRepo = new Mock<IGenreRepository>();
