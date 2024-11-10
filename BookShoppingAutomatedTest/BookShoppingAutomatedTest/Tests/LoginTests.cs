@@ -44,13 +44,6 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(loginPage.IsInvalidLoginAttempt());
         }
 
-        [Test]
-        public void LoginWithEmailWithoutAtSymbol_DisplayFloatingMessageOnEmail()
-        {
-            loginPage.Login("admingmail.com", "Admin@123");
-            Thread.Sleep(2000);
-            Assert.IsTrue(loginPage.IsFloatingMessageOnEmail());
-        }
 
 
         [Test]

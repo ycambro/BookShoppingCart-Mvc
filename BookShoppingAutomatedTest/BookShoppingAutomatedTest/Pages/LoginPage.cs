@@ -19,8 +19,6 @@ namespace BookShoppingAutomatedTest.Pages
 
         By InvalidLoginAttemptLocator = By.XPath("//*[@id=\"account\"]/div[1]/ul/li");
 
-        By FloatingMessageOnEmailLocator = By.XPath("//*[@id=\"account\"]/div[2]/span");
-
         By ForgotPasswordLocator = By.Id("forgot-password");
         By ResetPasswordBtnLocator = By.XPath("/html/body/div/div[2]/div/form/button");
         By ResetPasswordConfirmationMsgLocator = By.XPath("/html/body/div/h1");
@@ -51,10 +49,6 @@ namespace BookShoppingAutomatedTest.Pages
             return IsDisplayed(InvalidLoginAttemptLocator);
         }
 
-        public bool IsFloatingMessageOnEmail()
-        {
-            return IsDisplayed(FloatingMessageOnEmailLocator);
-        }
 
         public void ForgotPassword(string email)
         {
