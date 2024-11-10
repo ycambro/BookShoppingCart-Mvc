@@ -87,5 +87,10 @@ namespace BookShoppingAutomatedTest
             return driver.Url;
         }
 
+        public void Clear(By locator)
+        {
+            driver.FindElement(locator).Clear();
+        }
+
     }
 }
