@@ -34,6 +34,7 @@ namespace BookShoppingAutomatedTest.Tests
         }
 
 
+        // Codigo 035
         [Test]
         public void RegisterBookWithValidData_IsRegistered()
         {
@@ -42,6 +43,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsFormEmpty());
         }
 
+        // Codigo 036
         [Test]
         public void RegisterBookWithEmptyForm_DisplayAllMsg()
         {
@@ -50,7 +52,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsAllMsgDisplayed());
         }
 
-
+        // Codigo 037
         [Test]
         public void RegisterBookWithNoGenre_DisplayGenreMsg()
         {
@@ -59,6 +61,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsGenreFieldRequiredMsgDisplayed());
         }
 
+        // Codigo 038
         [Test]
         public void RegisterBookWithoutBookname_DisplayBooknameMsg()
         {
@@ -67,6 +70,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsBookNameFieldRequiredMsgDisplayed());
         }
 
+        // Codigo 039
         [Test]
         public void RegisterBookWithoutAuthor_DisplayAuthorMsg()
         {
@@ -75,6 +79,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsAuthorFieldRequiredMsgDisplayed());
         }
 
+        // Codigo 040
         [Test]
         public void RegisterBookWithoutPrice_DisplayPriceMsg()
         {
@@ -83,6 +88,8 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsPriceFieldRequiredMsgDisplayed());
         }
 
+
+        // Codigo 041
         [Test]
         public void RegisterBookWithNegativePrice_DisplayPriceMsg()
         {
@@ -91,6 +98,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsNegativePriceMsgDisplayed("Angels and Demons"));
         }
 
+        // Codigo 042
         [Test]
         public void RegisterBookWithExistingBook_DisplayBookExistsMsg()
         {
@@ -99,6 +107,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsFalse(bookPage.IsBookRepeated("Pride and Prejudice"));
         }
 
+        // Codigo 044
         [Test]
         public void UpdatePriceWithIntegerValueFirstBook_DisplayBookWithnewPrice()
         {
@@ -108,7 +117,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsFirstPriceUpdated("13"));
         }
 
-
+        // Codigo 046
         [Test]
         public void UpdatePriceWithFloatValueFirstBook_DisplayBookWithnewPrice()
         {
@@ -118,7 +127,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsFirstPriceUpdated("10,99"));
         }
 
-
+        // Codigo 047
         [Test] 
         public void UpdateAuthor_DisplayBookWithNewAuthor()
         {
@@ -128,8 +137,9 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsFirstBookAuthorUpdated("Andrea Perez"));
         }
 
+        // Codigo 048
         [Test]
-        public void UpdateBokkName_DisplayBookWithNewName()
+        public void UpdateBookName_DisplayBookWithNewName()
         {
             bookPage.ManageBooks();
             bookPage.EditFirstBook("", "Harry potter", "", "");
@@ -137,7 +147,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsFirstBookNameUpdated("Harry potter"));
         }
 
-
+        // Codigo 043
         [Test]
         public void DeleteBook_DeletedBookIsNotDisplayed()
         {

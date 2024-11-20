@@ -29,7 +29,7 @@ namespace BookShoppingAutomatedTest.Tests
             driver.Quit();
         }
 
-
+        // Codigo 001
         [Test]
         public void LoginWithValidCredentials_LogIntoAccount()
         {
@@ -37,6 +37,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(loginPage.IsLoggedIn());
         }
 
+        // Codigo 002
         [Test]
         public void LoginWithWrongPassword_DisplayInvalidLoginAttempt()
         {
@@ -45,7 +46,7 @@ namespace BookShoppingAutomatedTest.Tests
         }
 
 
-
+        // Codigo 004
         [Test]
         public void LogitnWithWrongEmail_DisplayInvalidLoginAttempt()
         {
@@ -53,6 +54,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(loginPage.IsInvalidLoginAttempt());
         }
 
+        // Codigo 005
         [Test]
         public void ForgotPassword_SendResetPasswordEmail()
         {

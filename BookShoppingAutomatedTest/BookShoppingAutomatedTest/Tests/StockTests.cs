@@ -31,7 +31,7 @@ namespace BookShoppingAutomatedTest.Tests
             driver.Quit();
         }
 
-
+        // Codigo 032
         [Test]
         public void UpdateStockWithEmptyString_DisplayMsg()
         {
@@ -40,7 +40,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(stockPage.IsInvalidStockDisplayed());
         }
 
-
+        // Codigo 033
         [Test]
         public void SearchExistingBook_DisplayedResults()
         {
@@ -49,6 +49,7 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(stockPage.IsValidResultSearch("The Notebook"));
         }
 
+        // Codigo 034
         [Test]
         public void SearchNonExistingBook_DisplayEmptyResults()
         {
