@@ -61,6 +61,24 @@ namespace BookShoppingAutomatedTest.Pages
             return false;
         }
 
+        public Boolean IsGenreAddedTwice(String genreName)
+        {
+            Click(BackBtnLocator);
+            Thread.Sleep(2000);
+            List<IWebElement> rows = FindElements(ResultsLocator);
+
+            IWebElement FirstCell = rows[rows.Count - 1].FindElement(By.TagName("td"));
+            IWebElement SecondCell = rows[rows.Count - 2].FindElement(By.TagName("td"));
+            String genre1 = FirstCell.Text;
+            String genre2 = SecondCell.Text;
+            if (genre1 == genreName && genre2 == genreName)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public Boolean IsGenereNameEmpty()
         {
             return GetText(GenreNameInputLocator) == "";

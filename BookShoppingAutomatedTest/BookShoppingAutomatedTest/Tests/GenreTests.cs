@@ -43,5 +43,16 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(isGenreInputEmpty && genrePage.IsGenreAdded("Drama"));
         }
 
+        // Codigo 050
+        [Test]
+        public void AddExistingGenre_WillNotBeAdded()
+        {
+            genrePage.ManageGenre();
+            genrePage.AddGenre("Drama");
+            genrePage.AddGenre("Drama");
+
+            Assert.IsTrue(genrePage.IsGenreAddedTwice("Drama"));
+        }
+
     }
 }
