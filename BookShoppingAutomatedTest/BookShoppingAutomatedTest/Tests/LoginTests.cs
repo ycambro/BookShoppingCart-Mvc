@@ -61,5 +61,13 @@ namespace BookShoppingAutomatedTest.Tests
             loginPage.ForgotPassword("admin@gmail.com");
             Assert.IsTrue(loginPage.IsResetPasswordConfirmationMsg());
         }
+
+        // Codigo 006
+        [Test]
+        public void CreateAUserCorrectly() 
+        {
+            
+            
+        }
     }
 }
