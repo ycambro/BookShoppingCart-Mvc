@@ -19,8 +19,8 @@ namespace BookShoppingAutomatedTest.Tests
             manageAccountPage = new ManageAccountPage(driver);
             driver = manageAccountPage.ChromeDriverConnection();
             driver.Manage().Window.Maximize();
-            manageAccountPage.Visit("https://localhost:7158/Home/Index");
-            manageAccountPage.EnsureLoggedIn("leo@gmail.com", "Leo123.");
+            manageAccountPage.Visit("https://localhost:5232/Home/Index");
+            manageAccountPage.EnsureLoggedIn("admin@gmail.com", "Admin@123");
         }
         [TearDown]
         public void TearDown()
