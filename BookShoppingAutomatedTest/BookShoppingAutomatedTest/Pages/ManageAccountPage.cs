@@ -37,6 +37,7 @@ namespace BookShoppingAutomatedTest.Pages
         public void ManageAccountPhoneNumber(string phoneNumber) 
         {
             Click(ManageAccountLocator);
+            Clear(PhoneNumberLocator);
             Type(phoneNumber, PhoneNumberLocator);
             Click(BtnUpdateProfile);
         }

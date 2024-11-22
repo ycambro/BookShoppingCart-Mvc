@@ -218,7 +218,7 @@ namespace BookShoppingAutomatedTest.Tests
         public void AddBookToCartAnAddedBookWithLogin_DisplayedCartPage()
         {
             homePage.EnsureLoggedIn("admin@gmail.com", "Admin@123");
-            homePage.SearchBook("Pride and Prejudice");
+            homePage.SearchBook("Outlander");
             homePage.AddToCart();
             homePage.AddToCart();
             Assert.IsFalse(homePage.IsCartCountIncremented(2));

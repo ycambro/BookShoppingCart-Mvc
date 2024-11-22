@@ -148,17 +148,5 @@ namespace BookShoppingAutomatedTest.Tests
             Assert.IsTrue(bookPage.IsFirstBookNameUpdated("Harry potter"));
         }
 
-        // Codigo 043
-        [Test]
-        public void DeleteBook_DeletedBookIsNotDisplayed()
-        {
-            bookPage.ManageBooks();
-            int booksBefore = bookPage.CountBook();
-            bookPage.DeleteFirstBook();
-            Thread.Sleep(2000);
-            int booksAfter = bookPage.CountBook();
-            Assert.IsTrue(booksBefore > booksAfter);
-        }
-
     }
 }

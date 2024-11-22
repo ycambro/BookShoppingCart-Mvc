@@ -19,7 +19,7 @@ namespace BookShoppingAutomatedTest.Tests
             RegisterPage = new RegisterPage(driver);
             driver = RegisterPage.ChromeDriverConnection();
             driver.Manage().Window.Maximize();
-            RegisterPage.Visit("https://localhost:7158/Home/Index");
+            RegisterPage.Visit("http://localhost:5232/");
         }
         [TearDown]
         public void TearDown()
