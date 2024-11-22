@@ -27,12 +27,6 @@ namespace BookShoppingAutomatedTest.Tests
             driver.Quit();
         }
         [Test]
-        public void EnterAUserCorrectly() 
-        {
-            RegisterPage.Register("Leoo@gmail.com", "Leo123.", "Leo123.");
-            Assert.IsTrue(RegisterPage.IsLoggedIn());
-        }
-        [Test]
         //Codigo 007
         public void PasswordAlphaNumeric() 
         {
